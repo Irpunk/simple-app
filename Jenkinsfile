@@ -49,9 +49,9 @@ pipeline {
   agent any
   environment {
   // ubah 'youruser/simple-app' dengan nama kamu dan repo proyek kamu
-    IMAGE_NAME = 'youruser/simple-app'
+    IMAGE_NAME = 'irpan011204/simple-app'
   // ubah 'dockerhub-credentials' dengan credential yang sudah kamu buat 
-    REGISTRY_CREDENTIALS = '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'
+    REGISTRY_CREDENTIALS = 'dockerhub-credentials'
   }
   stages {
     stage('Checkout') {
