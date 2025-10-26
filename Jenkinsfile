@@ -1,27 +1,32 @@
-{
+pipeline {
   agent any
+
   environment {
-  // ubah 'youruser/simple-app' dengan nama kamu dan repo proyek kamu
+    // ubah 'youruser/simple-app' dengan nama kamu dan repo proyek kamu
     IMAGE_NAME = 'irpan011204/simple-app'
-  // ubah 'dockerhub-credentials' dengan credential yang sudah kamu buat 
+    // ubah 'dockerhub-credentials' dengan credential yang sudah kamu buat 
     REGISTRY_CREDENTIALS = 'dockerhub-credentials'
   }
+
   stages {
     stage('Checkout') {
       steps {
         checkout scm
       }
     }
+
     stage('Build') {
       steps {
         bat 'echo "Build di Windows"'
       }
     }
+
     stage('Build Docker Image') {
       steps {
         bat """docker build -t ${env.IMAGE_NAME}:${env.BUILD_NUMBER} ."""
       }
     }
+
     stage('Push Docker Image') {
       steps {
         withCredentials([usernamePassword(credentialsId: env.REGISTRY_CREDENTIALS, usernameVariable: 'USER', passwordVariable: 'PASS')]) {
